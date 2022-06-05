@@ -27,6 +27,8 @@ public class NewsfeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
 
+//        Set events
+
         findViews();
         onClickListener();
 
