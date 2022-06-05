@@ -1,16 +1,19 @@
 package com.example.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.R;
 import com.example.models.Event;
+import com.example.models.Volunteer;
 
-public class EventActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     TextView name;
     TextView detail;
     TextView organization;
@@ -26,7 +29,9 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-//        Need Event
+        Intent intent = getIntent();
+        Bundle args = intent.getBundleExtra("BUNDLE");
+        this.event = (Event) args.getSerializable("EVENT");
 
         findViews();
         loadViews();
@@ -48,6 +53,8 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Register for this event
+                Toast toast = Toast.makeText(getApplicationContext(), "Successfully registered.", Toast.LENGTH_LONG);
+                toast.show();
             }
         });
     }

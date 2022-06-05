@@ -13,6 +13,7 @@ import com.example.R;
 import com.example.adapters.EventAdapter;
 import com.example.models.Event;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NewsfeedActivity extends AppCompatActivity {
@@ -40,10 +41,10 @@ public class NewsfeedActivity extends AppCompatActivity {
         this.events_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(NewsfeedActivity.this, EventActivity.class);
-//                Bundle args = new Bundle();
-//                args.putSerializable("ARRAYLIST",(Serializable)events_list);
-//                intent.putExtra("BUNDLE",args);
+                Intent intent = new Intent(NewsfeedActivity.this, RegisterActivity.class);
+                Bundle args = new Bundle();
+                args.putSerializable("EVENT",(Serializable)events.get(i));
+                intent.putExtra("BUNDLE",args);
                 startActivity(intent);
             }
         });

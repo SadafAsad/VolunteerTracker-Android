@@ -1,8 +1,7 @@
 package com.example.views;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,28 +20,30 @@ public class HistoryDetailActivity extends AppCompatActivity {
     TextView user_location;
     TextView hours;
 
-    Volunteer volunteer;
+    Volunteer volunteered;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteered);
 
-//        Need volunteer
+        Intent intent = getIntent();
+        Bundle args = intent.getBundleExtra("BUNDLE");
+        this.volunteered = (Volunteer) args.getSerializable("VOLUNTEERED");
 
         findViews();
         loadViews();
     }
 
     public void loadViews() {
-        name.setText(volunteer.getEvent().getName());
-        detail.setText(volunteer.getEvent().getDetail());
-        organization.setText(volunteer.getEvent().getOrganization());
-        location.setText(volunteer.getEvent().getLocation());
-        date.setText(volunteer.getEvent().getDate());
-        start_time.setText(volunteer.getEvent().getStart_time());
-        finish_time.setText(volunteer.getEvent().getFinish_time());
-        user_location.setText(volunteer.getLocation());
-        hours.setText(volunteer.getHours()+"");
+        name.setText(volunteered.getEvent().getName());
+        detail.setText(volunteered.getEvent().getDetail());
+        organization.setText(volunteered.getEvent().getOrganization());
+        location.setText(volunteered.getEvent().getLocation());
+        date.setText(volunteered.getEvent().getDate());
+        start_time.setText(volunteered.getEvent().getStart_time());
+        finish_time.setText(volunteered.getEvent().getFinish_time());
+        user_location.setText(volunteered.getLocation());
+        hours.setText(volunteered.getHours()+"");
     }
 
     public void findViews() {

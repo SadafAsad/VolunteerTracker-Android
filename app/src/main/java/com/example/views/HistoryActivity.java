@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +12,7 @@ import com.example.R;
 import com.example.adapters.HistoryAdapter;
 import com.example.models.Volunteer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
@@ -38,9 +38,9 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(HistoryActivity.this, HistoryDetailActivity.class);
-//                Bundle args = new Bundle();
-//                args.putSerializable("ARRAYLIST",(Serializable)volunteered);
-//                intent.putExtra("BUNDLE",args);
+                Bundle args = new Bundle();
+                args.putSerializable("VOLUNTEERED",(Serializable)volunteered.get(i));
+                intent.putExtra("BUNDLE",args);
                 startActivity(intent);
             }
         });
