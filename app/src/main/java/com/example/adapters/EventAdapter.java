@@ -50,7 +50,9 @@ public class EventAdapter extends BaseAdapter {
         time.setText(this.events.get(i).getStart_time()+"-"+this.events.get(i).getFinish_time());
         location.setText(this.events.get(i).getLocation());
 
-//        if user has registered for this event before, background will be yellow
+//        Search in user.volunteered for the events
+//        if any events in there matches this event
+//        then view's background color should be yellow
 
         return view;
     }

@@ -47,6 +47,14 @@ public class HistoryAdapter extends BaseAdapter {
         name.setText(this.volunteered.get(i).getEvent().getName());
         date.setText(this.volunteered.get(i).getEvent().getDate());
         hours.setText(this.volunteered.get(i).getHours()+"");
+
+        if (this.volunteered.get(i).getDone()) {
+            view.setBackgroundColor(0xFF00FF00);
+        }
+        else {
+            view.setBackgroundColor(0xFF000000);
+        }
+
         return view;
     }
 }

@@ -9,7 +9,7 @@ import com.example.models.User;
 import com.example.repositories.UserRepository;
 
 public class UserViewModel extends AndroidViewModel {
-    private final UserRepository respository = new UserRepository();
+    private final UserRepository repository = new UserRepository();
     private static UserViewModel instance;
 
     public UserViewModel(@NonNull Application application) {
@@ -24,10 +24,10 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     public UserRepository getUserRepository() {
-        return this.respository;
+        return this.repository;
     }
 
     public void addUser(User user) {
-        this.respository.addUser(user);
+        this.repository.addUser(user);
     }
 }

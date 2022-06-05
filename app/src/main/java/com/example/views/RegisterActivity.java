@@ -46,6 +46,9 @@ public class RegisterActivity extends AppCompatActivity {
         date.setText(event.getDate());
         start_time.setText(event.getStart_time());
         finish_time.setText(event.getFinish_time());
+//        Search in user.volunteered for the events
+//        if any event matches this one
+//        then the register button text should change to "Registered" and become disable
     }
 
     public void onClickListener() {
@@ -53,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Register for this event
+//                Create a new Volunteer
                 Toast toast = Toast.makeText(getApplicationContext(), "Successfully registered.", Toast.LENGTH_LONG);
                 toast.show();
             }

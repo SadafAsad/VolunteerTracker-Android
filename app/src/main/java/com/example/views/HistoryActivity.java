@@ -24,7 +24,7 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-//        Set volunteered
+//        Retrieve volunteered for the logged in user
 
         findViews();
         onClickListener();
