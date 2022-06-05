@@ -44,8 +44,8 @@ public class HistoryAdapter extends BaseAdapter {
         TextView name = (TextView) view.findViewById(R.id.event_name);
         TextView date = (TextView) view.findViewById(R.id.event_date);
         TextView hours = (TextView) view.findViewById(R.id.user_hours);
-//        name.setText(this.volunteered.get(i).event.getName());
-//        date.setText(this.volunteered.get(i).event.getDate());
+        name.setText(this.volunteered.get(i).getEvent().getName());
+        date.setText(this.volunteered.get(i).getEvent().getDate());
         hours.setText(this.volunteered.get(i).getHours()+"");
         return view;
     }

@@ -9,7 +9,7 @@ import com.example.models.Volunteer;
 import com.example.repositories.VolunteerRespository;
 
 public class VolunteerViewModel extends AndroidViewModel {
-    private final VolunteerRespository respository = new VolunteerRespository();
+    private final VolunteerRespository repository = new VolunteerRespository();
     private static VolunteerViewModel instance;
 
     public VolunteerViewModel(@NonNull Application application) {
@@ -24,10 +24,10 @@ public class VolunteerViewModel extends AndroidViewModel {
     }
 
     public VolunteerRespository getVolunteerRepository() {
-        return this.respository;
+        return this.repository;
     }
 
     public void addVolunteer(Volunteer volunteer) {
-        this.respository.addVolunteer(volunteer);
+        this.repository.addVolunteer(volunteer);
     }
 }

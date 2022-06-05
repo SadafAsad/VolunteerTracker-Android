@@ -34,13 +34,13 @@ public class HistoryDetailActivity extends AppCompatActivity {
     }
 
     public void loadViews() {
-//        name.setText(volunteer.event.getName());
-//        detail.setText(volunteer.event.getDetail());
-//        organization.setText(volunteer.event.getOrganization());
-//        location.setText(volunteer.event.getLocation());
-//        date.setText(volunteer.event.getDate());
-//        start_time.setText(volunteer.event.getStart_time());
-//        finish_time.setText(volunteer.event.getFinish_time());
+        name.setText(volunteer.getEvent().getName());
+        detail.setText(volunteer.getEvent().getDetail());
+        organization.setText(volunteer.getEvent().getOrganization());
+        location.setText(volunteer.getEvent().getLocation());
+        date.setText(volunteer.getEvent().getDate());
+        start_time.setText(volunteer.getEvent().getStart_time());
+        finish_time.setText(volunteer.getEvent().getFinish_time());
         user_location.setText(volunteer.getLocation());
         hours.setText(volunteer.getHours()+"");
     }
