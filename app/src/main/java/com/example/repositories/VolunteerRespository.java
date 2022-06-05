@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.example.models.Volunteer;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -34,10 +35,10 @@ public class VolunteerRespository {
             data.put(FIELD_LOCATION, newVolunteer.getLocation());
             data.put(FIELD_HOURS, newVolunteer.getHours());
 
-            DB.collection(COLLECTION_USERS).document(loggedInUserEmail).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+            DB.collection(COLLECTION_USERS).document(loggedInUserEmail).collection(COLLECTION_VOLUNTEERS).add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
-                public void onSuccess(Void unused) {
-                    Log.e(TAG, "onSuccess: Document added successfully ");
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.e(TAG, "onSuccess: Document successfully created with ID " + documentReference.getId());
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

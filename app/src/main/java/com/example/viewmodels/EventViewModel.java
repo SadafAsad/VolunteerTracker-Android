@@ -16,6 +16,17 @@ public class EventViewModel extends AndroidViewModel {
         super(application);
     }
 
+    public static EventViewModel getInstance(Application application) {
+        if (instance == null) {
+            instance = new EventViewModel(application);
+        }
+        return instance;
+    }
+
+    public EventRepository getEventRepository() {
+        return this.repository;
+    }
+
     public void addEvent(Event event) {
         this.repository.addEvent(event);
     }

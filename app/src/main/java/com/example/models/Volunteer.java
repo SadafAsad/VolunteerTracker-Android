@@ -90,5 +90,4 @@ public class Volunteer implements Parcelable {
         dest.writeString(location);
         dest.writeDouble(hours);
     }
-
 }

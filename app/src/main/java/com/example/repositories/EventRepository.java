@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.example.models.Event;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -15,7 +16,6 @@ import java.util.Map;
 public class EventRepository {
     private final FirebaseFirestore DB;
     private final String COLLECTION_EVENTS = "events";
-    private final String COLLECTION_USERS = "users";
     private final String FIELD_NAME = "name";
     private final String FIELD_DETAIL = "detail";
     private final String FIELD_ORGANIZATION = "organization";
@@ -41,10 +41,10 @@ public class EventRepository {
             data.put(FIELD_START_TIME, newEvent.getStart_time());
             data.put(FIELD_FINISH_TIME, newEvent.getFinish_time());
 
-            DB.collection(COLLECTION_EVENTS).document().set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+            DB.collection(COLLECTION_EVENTS).add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
-                public void onSuccess(Void unused) {
-                    Log.e(TAG, "onSuccess: Document added successfully ");
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.e(TAG, "onSuccess: Document successfully created with ID " + documentReference.getId());
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
