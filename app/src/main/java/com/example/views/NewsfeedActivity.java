@@ -1,18 +1,16 @@
 package com.example.views;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.R;
+import com.example.adapters.EventAdapter;
 import com.example.models.Event;
 
 import java.util.ArrayList;
@@ -31,6 +29,9 @@ public class NewsfeedActivity extends AppCompatActivity {
 
         findViews();
         onClickListener();
+
+        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), events);
+        events_list.setAdapter(eventAdapter);
     }
 
     public void onClickListener() {
