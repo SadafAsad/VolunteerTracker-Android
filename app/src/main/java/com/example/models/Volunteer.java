@@ -5,21 +5,24 @@ import android.os.Parcelable;
 
 public class Volunteer implements Parcelable {
     private String id;
+    private Event event;
     private Boolean done;
     private String location;
     private Double hours;
 
     public Volunteer() {}
 
-    public Volunteer(Boolean done, String location, Double hours) {
+    public Volunteer(Event event, Boolean done, String location, Double hours) {
+        this.event = event;
         this.done = done;
         this.location = location;
         this.hours = hours;
     }
 
     protected Volunteer(Parcel in) {
+//        event = in.readParcelable();
         id = in.readString();
-        //done = in.readBoolean();
+//        done = in.readBoolean();
         location = in.readString();
         hours = in.readDouble();
     }
@@ -42,6 +45,14 @@ public class Volunteer implements Parcelable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
     public Boolean getDone() {
@@ -72,6 +83,7 @@ public class Volunteer implements Parcelable {
     public String toString() {
         return "Volunteer{" +
                 "id='" + id + '\'' +
+                ", event='" + event.toString() + '\'' +
                 ", done='" + done + '\'' +
                 ", location='" + location + '\'' +
                 ", hours='" + hours + '\'' +
@@ -86,7 +98,8 @@ public class Volunteer implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
-        //dest.writeBoolean(done);
+//        dest.writeParcelable();
+//        dest.writeBoolean(done);
         dest.writeString(location);
         dest.writeDouble(hours);
     }

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.models.Event;
 import com.example.models.Volunteer;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,6 +19,7 @@ public class VolunteerRespository {
     private final String COLLECTION_VOLUNTEERS = "volunteers";
     private final String COLLECTION_EVENTS = "events";
     private final String COLLECTION_USERS = "users";
+    private final String FIELD_EVENT = "event";
     private final String FIELD_DONE = "done";
     private final String FIELD_LOCATION = "location";
     private final String FIELD_HOURS = "hours";
@@ -31,6 +33,7 @@ public class VolunteerRespository {
     public void addVolunteer(Volunteer newVolunteer) {
         try {
             Map<String, Object> data = new HashMap<>();
+            data.put(FIELD_EVENT, newVolunteer.getEvent());
             data.put(FIELD_DONE, newVolunteer.getDone());
             data.put(FIELD_LOCATION, newVolunteer.getLocation());
             data.put(FIELD_HOURS, newVolunteer.getHours());
