@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -28,7 +29,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsfeedActivity extends AppCompatActivity implements OnEventClickListener {
+public class NewsfeedActivity extends AppCompatActivity implements OnEventClickListener, View.OnClickListener {
     ActivityNewsfeedBinding binding;
 
     private ArrayList<Event> eventArrayList = new ArrayList<>();
@@ -43,8 +44,6 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
 
         binding = ActivityNewsfeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        onClickListener();
 
 //        RecyclerView set up
         this.eventArrayList = new ArrayList<>();
@@ -81,24 +80,6 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
         });
     }
 
-    public void onClickListener() {
-        this.binding.history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NewsfeedActivity.this, HistoryActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        this.binding.history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NewsfeedActivity.this, RecordActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
     @Override
     public void onEventItemClicked(Event event) {
         Intent intent = new Intent(NewsfeedActivity.this, RegisterActivity.class);
@@ -106,5 +87,21 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
         args.putSerializable("EVENT",(Serializable)event);
         intent.putExtra("BUNDLE",args);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view != null) {
+            switch (view.getId()) {
+                case R.id.history:{
+                    Intent intent = new Intent(NewsfeedActivity.this, HistoryActivity.class);
+                    startActivity(intent);
+                }
+                case R.id.record:{
+                    Intent intent = new Intent(NewsfeedActivity.this, RecordActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }
     }
 }

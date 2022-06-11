@@ -14,9 +14,11 @@ import com.example.databinding.ActivityHistoryBinding;
 import com.example.databinding.ActivityRegisterBinding;
 import com.example.models.Event;
 import com.example.models.Volunteer;
+import com.example.viewmodels.VolunteerViewModel;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
     ActivityRegisterBinding binding;
+    private VolunteerViewModel volunteerViewModel;
 
     Event event;
 
@@ -31,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
         this.event = (Event) args.getSerializable("EVENT");
 
         loadViews();
-        onClickListener();
     }
 
     public void loadViews() {
@@ -47,15 +48,21 @@ public class RegisterActivity extends AppCompatActivity {
 //        then the register button text should change to "Registered" and become disable
     }
 
-    public void onClickListener() {
-        this.binding.register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Register for this event
-//                Create a new Volunteer
-                Toast toast = Toast.makeText(getApplicationContext(), "Successfully registered.", Toast.LENGTH_LONG);
-                toast.show();
+    @Override
+    public void onClick(View view) {
+        if (view != null) {
+            switch (view.getId()) {
+                case R.id.register:{
+                    Volunteer v = new Volunteer();
+                    v.setEvent(event);
+                    v.setDone(false);
+                    v.setHours(0.0);
+                    v.setLocation("");
+                    this.volunteerViewModel.addVolunteer(v);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Successfully registered.", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
-        });
+        }
     }
 }
