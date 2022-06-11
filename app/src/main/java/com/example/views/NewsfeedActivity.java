@@ -2,73 +2,106 @@ package com.example.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.OnEventClickListener;
 import com.example.R;
 import com.example.adapters.EventAdapter;
+import com.example.adapters.HistoryAdapter;
+import com.example.databinding.ActivityHistoryBinding;
+import com.example.databinding.ActivityNewsfeedBinding;
 import com.example.models.Event;
+import com.example.models.Volunteer;
+import com.example.viewmodels.EventViewModel;
+import com.example.viewmodels.VolunteerViewModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class NewsfeedActivity extends AppCompatActivity {
-    ListView events_list;
-    Button history;
-    Button record;
+public class NewsfeedActivity extends AppCompatActivity implements OnEventClickListener, View.OnClickListener {
+    ActivityNewsfeedBinding binding;
 
-    ArrayList<Event> events;
+    private ArrayList<Event> eventArrayList = new ArrayList<>();
+    private EventAdapter eventAdapter;
+    private EventViewModel eventViewModel;
+
+    private String TAG = this.getClass().getCanonicalName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newsfeed);
 
-//        Retrieve events
+        binding = ActivityNewsfeedBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        findViews();
-        onClickListener();
+//        RecyclerView set up
+        this.eventArrayList = new ArrayList<>();
+        this.eventAdapter = new EventAdapter(this, this.eventArrayList, this::onEventItemClicked);
 
-        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), events);
-        events_list.setAdapter(eventAdapter);
+        this.binding.eventsList.setLayoutManager(new LinearLayoutManager(this));
+        this.binding.eventsList.addItemDecoration(new DividerItemDecoration(this.getApplicationContext(), DividerItemDecoration.VERTICAL));
+        this.binding.eventsList.setAdapter(this.eventAdapter);
+
+        this.eventViewModel = EventViewModel.getInstance(this.getApplication());
     }
 
-    public void onClickListener() {
-        this.events_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(NewsfeedActivity.this, RegisterActivity.class);
-                Bundle args = new Bundle();
-                args.putSerializable("EVENT",(Serializable)events.get(i));
-                intent.putExtra("BUNDLE",args);
-                startActivity(intent);
-            }
-        });
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("NewsfeedActivity","----------onResume");
 
-        this.history.setOnClickListener(new View.OnClickListener() {
+        this.eventViewModel.getEvents();
+        this.eventViewModel.allEvents.observe(this, new Observer<List<Event>>() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NewsfeedActivity.this, HistoryActivity.class);
-                startActivity(intent);
-            }
-        });
+            public void onChanged(List<Event> events) {
+                if (events.isEmpty()){
+                    Log.e(TAG, "onChanged: No events");
+                }else{
+                    for(Event e : events){
+                        Log.e(TAG, "onChanged: e : " + e.toString() );
+                    }
 
-        this.record.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NewsfeedActivity.this, RecordActivity.class);
-                startActivity(intent);
+                    eventArrayList.clear();
+                    eventArrayList.addAll(events);
+                    eventAdapter.notifyDataSetChanged();
+                }
             }
         });
     }
 
-    public void findViews() {
-        events_list = (ListView) findViewById(R.id.events_list);
-        history = (Button) findViewById(R.id.history);
-        record = (Button) findViewById(R.id.record);
+    @Override
+    public void onEventItemClicked(Event event) {
+        Intent intent = new Intent(NewsfeedActivity.this, RegisterActivity.class);
+        Bundle args = new Bundle();
+        args.putSerializable("EVENT",(Serializable)event);
+        intent.putExtra("BUNDLE",args);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view != null) {
+            switch (view.getId()) {
+                case R.id.history:{
+                    Intent intent = new Intent(NewsfeedActivity.this, HistoryActivity.class);
+                    startActivity(intent);
+                }
+                case R.id.record:{
+                    Intent intent = new Intent(NewsfeedActivity.this, RecordActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }
     }
 }
