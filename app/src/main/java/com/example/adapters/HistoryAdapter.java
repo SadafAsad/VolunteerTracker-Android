@@ -52,11 +52,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         }
 
         public void bind(Context context, final Volunteer currentVolunteer, OnVolunteerClickListener clickListener){
-            binding.eventName.setText(currentVolunteer.getEvent().getName());
-            binding.date.setText(currentVolunteer.getEvent().getDate());
+            binding.eventName.setText(currentVolunteer.getEvent());
+            binding.date.setText(currentVolunteer.getDate());
             binding.hours.setText("" + currentVolunteer.getHours());
 
-            if (currentVolunteer.getDone()) {
+            if (currentVolunteer.isDone()) {
                 binding.getRoot().setBackgroundColor(0xFF00FF00);
             }
             else {

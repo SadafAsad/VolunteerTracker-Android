@@ -1,30 +1,36 @@
 package com.example.models;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.RequiresApi;
+
 public class Volunteer implements Parcelable {
     private String id;
-    private Event event;
-    private Boolean done;
+    private String event;
     private String location;
     private Double hours;
+    private String date;
+    private boolean done;
 
     public Volunteer() {}
 
-    public Volunteer(Event event, Boolean done, String location, Double hours) {
+    public Volunteer(String event, String location, Double hours, String date, boolean done) {
         this.event = event;
-        this.done = done;
         this.location = location;
         this.hours = hours;
+        this.date = date;
+        this.done = done;
     }
 
     protected Volunteer(Parcel in) {
-//        event = in.readParcelable();
+        event = in.readString();
         id = in.readString();
-//        done = in.readBoolean();
         location = in.readString();
         hours = in.readDouble();
+        date = in.readString();
+        done = in.readBoolean();
     }
 
     public static final Creator<Volunteer> CREATOR = new Creator<Volunteer>() {
@@ -47,20 +53,12 @@ public class Volunteer implements Parcelable {
         this.id = id;
     }
 
-    public Event getEvent() {
+    public String getEvent() {
         return event;
     }
 
-    public void setEvent(Event event) {
+    public void setEvent(String event) {
         this.event = event;
-    }
-
-    public Boolean getDone() {
-        return done;
-    }
-
-    public void setDone(Boolean done) {
-        this.done = done;
     }
 
     public String getLocation() {
@@ -79,14 +77,31 @@ public class Volunteer implements Parcelable {
         this.hours = hours;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
     @Override
     public String toString() {
         return "Volunteer{" +
                 "id='" + id + '\'' +
-                ", event='" + event.toString() + '\'' +
-                ", done='" + done + '\'' +
+                ", event='" + event + '\'' +
                 ", location='" + location + '\'' +
                 ", hours='" + hours + '\'' +
+                ", date='" + date + '\'' +
+                ", done='" + done + '\'' +
                 '}';
     }
 
@@ -98,9 +113,10 @@ public class Volunteer implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
-//        dest.writeParcelable();
-//        dest.writeBoolean(done);
+        dest.writeString(event);
         dest.writeString(location);
         dest.writeDouble(hours);
+        dest.writeString(date);
+        dest.writeBoolean(done);
     }
 }

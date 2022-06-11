@@ -54,10 +54,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             switch (view.getId()) {
                 case R.id.register:{
                     Volunteer v = new Volunteer();
-                    v.setEvent(event);
+                    v.setEvent(event.getName());
                     v.setDone(false);
                     v.setHours(0.0);
                     v.setLocation("");
+                    v.setDate(event.getDate());
                     this.volunteerViewModel.addVolunteer(v);
                     Toast toast = Toast.makeText(getApplicationContext(), "Successfully registered.", Toast.LENGTH_LONG);
                     toast.show();

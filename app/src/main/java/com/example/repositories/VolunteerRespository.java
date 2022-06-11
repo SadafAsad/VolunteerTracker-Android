@@ -27,6 +27,7 @@ public class VolunteerRespository {
     private final String FIELD_DONE = "done";
     private final String FIELD_LOCATION = "location";
     private final String FIELD_HOURS = "hours";
+    private final String FIELD_DATE = "date";
     public String loggedInUserEmail = "";
     private final String TAG = this.getClass().getCanonicalName();
     public MutableLiveData<List<Volunteer>> allVolunteered = new MutableLiveData<>();
@@ -42,6 +43,7 @@ public class VolunteerRespository {
             data.put(FIELD_DONE, newVolunteer.getDone());
             data.put(FIELD_LOCATION, newVolunteer.getLocation());
             data.put(FIELD_HOURS, newVolunteer.getHours());
+            data.put(FIELD_DATE, newVolunteer.getDate());
 
             DB.collection(COLLECTION_USERS).document(loggedInUserEmail).collection(COLLECTION_VOLUNTEERS).add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
@@ -98,6 +100,7 @@ public class VolunteerRespository {
         data.put(FIELD_DONE, v.getDone());
         data.put(FIELD_LOCATION, v.getLocation());
         data.put(FIELD_HOURS, v.getHours());
+        data.put(FIELD_DATE, v.getDate());
 
         try{
             DB.collection(COLLECTION_USERS)

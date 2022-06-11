@@ -9,20 +9,12 @@
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_newsfeed.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_newsfeed_card.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_sign_in.xml" value="0.23097826086956522" />
+        <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_sign_up.xml" value="0.23097826086956522" />
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_volunteered.xml" value="0.25416666666666665" />
-        <entry key="app/src/main/res/layout/activity_history.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_history_card.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/activity_newsfeed.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_newsfeed_card.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.29891304347826086" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.29891304347826086" />
-        <entry key="app/src/main/res/layout/activity_volunteered.xml" value="0.33" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

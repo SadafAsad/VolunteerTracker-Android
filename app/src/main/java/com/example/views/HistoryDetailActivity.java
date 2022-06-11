@@ -30,13 +30,13 @@ public class HistoryDetailActivity extends AppCompatActivity {
     }
 
     public void loadViews() {
-        this.binding.eventName.setText(volunteered.getEvent().getName());
-        this.binding.eventDetail.setText(volunteered.getEvent().getDetail());
-        this.binding.eventOrganization.setText(volunteered.getEvent().getOrganization());
-        this.binding.eventLocation.setText(volunteered.getEvent().getLocation());
-        this.binding.eventDate.setText(volunteered.getEvent().getDate());
-        this.binding.eventStart.setText(volunteered.getEvent().getStart_time());
-        this.binding.eventFinish.setText(volunteered.getEvent().getFinish_time());
+        this.binding.eventName.setText(volunteered.getEvent());
+        this.binding.eventDetail.setText("");
+        this.binding.eventOrganization.setText("");
+        this.binding.eventLocation.setText("");
+        this.binding.eventDate.setText(volunteered.getDate());
+        this.binding.eventStart.setText("");
+        this.binding.eventFinish.setText("");
         this.binding.userLocationHolder.setText(volunteered.getLocation());
         this.binding.hours.setText(volunteered.getHours()+"");
     }
