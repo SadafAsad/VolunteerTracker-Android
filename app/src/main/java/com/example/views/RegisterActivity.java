@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.R;
+import com.example.databinding.ActivityRegisterBinding;
 import com.example.models.Event;
 import com.example.models.Volunteer;
 
@@ -23,19 +24,23 @@ public class RegisterActivity extends AppCompatActivity {
     TextView finish_time;
     Button register;
 
+    ActivityRegisterBinding binding;
+
     Event event;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
 
-        Intent intent = getIntent();
-        Bundle args = intent.getBundleExtra("BUNDLE");
-        this.event = (Event) args.getSerializable("EVENT");
+        this.binding = ActivityRegisterBinding.inflate(this.getLayoutInflater());
+        setContentView(this.binding.getRoot());
 
-        findViews();
-        loadViews();
-        onClickListener();
+//        Intent intent = getIntent();
+//        Bundle args = intent.getBundleExtra("BUNDLE");
+//        this.event = (Event) args.getSerializable("EVENT");
+//
+//        findViews();
+//        loadViews();
+//        onClickListener();
     }
 
     public void loadViews() {
