@@ -11,34 +11,35 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.R;
 import com.example.adapters.EventAdapter;
+import com.example.databinding.ActivityHistoryBinding;
+import com.example.databinding.ActivityNewsfeedBinding;
 import com.example.models.Event;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NewsfeedActivity extends AppCompatActivity {
-    ListView events_list;
-    Button history;
-    Button record;
+    ActivityNewsfeedBinding binding;
 
     ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newsfeed);
+
+        binding = ActivityNewsfeedBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 //        Retrieve events
 
-        findViews();
         onClickListener();
 
         EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), events);
-        events_list.setAdapter(eventAdapter);
+        this.binding.eventsList.setAdapter(eventAdapter);
     }
 
     public void onClickListener() {
-        this.events_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.binding.eventsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(NewsfeedActivity.this, RegisterActivity.class);
@@ -49,7 +50,7 @@ public class NewsfeedActivity extends AppCompatActivity {
             }
         });
 
-        this.history.setOnClickListener(new View.OnClickListener() {
+        this.binding.history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewsfeedActivity.this, HistoryActivity.class);
@@ -57,18 +58,12 @@ public class NewsfeedActivity extends AppCompatActivity {
             }
         });
 
-        this.record.setOnClickListener(new View.OnClickListener() {
+        this.binding.history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewsfeedActivity.this, RecordActivity.class);
                 startActivity(intent);
             }
         });
-    }
-
-    public void findViews() {
-        events_list = (ListView) findViewById(R.id.events_list);
-        history = (Button) findViewById(R.id.history);
-        record = (Button) findViewById(R.id.record);
     }
 }

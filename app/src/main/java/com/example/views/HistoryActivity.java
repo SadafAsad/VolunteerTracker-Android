@@ -10,31 +10,33 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.R;
 import com.example.adapters.HistoryAdapter;
+import com.example.databinding.ActivityHistoryBinding;
 import com.example.models.Volunteer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
-    ListView volunteered_list;
+    ActivityHistoryBinding binding;
 
     ArrayList<Volunteer> volunteered;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
+
+        binding = ActivityHistoryBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 //        Retrieve volunteered for the logged in user
 
-        findViews();
         onClickListener();
 
         HistoryAdapter historyAdapter = new HistoryAdapter(getApplicationContext(), volunteered);
-        volunteered_list.setAdapter(historyAdapter);
+        this.binding.volunteeredList.setAdapter(historyAdapter);
     }
 
     public void onClickListener() {
-        this.volunteered_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.binding.volunteeredList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(HistoryActivity.this, HistoryDetailActivity.class);
@@ -44,9 +46,5 @@ public class HistoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    public void findViews() {
-        volunteered_list = (ListView) findViewById(R.id.volunteered_list);
     }
 }
