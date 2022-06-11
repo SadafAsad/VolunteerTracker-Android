@@ -2,26 +2,40 @@ package com.example.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.OnEventClickListener;
 import com.example.R;
 import com.example.adapters.EventAdapter;
+import com.example.adapters.HistoryAdapter;
 import com.example.databinding.ActivityHistoryBinding;
 import com.example.databinding.ActivityNewsfeedBinding;
 import com.example.models.Event;
+import com.example.models.Volunteer;
+import com.example.viewmodels.EventViewModel;
+import com.example.viewmodels.VolunteerViewModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class NewsfeedActivity extends AppCompatActivity {
+public class NewsfeedActivity extends AppCompatActivity implements OnEventClickListener {
     ActivityNewsfeedBinding binding;
 
-    ArrayList<Event> events;
+    private ArrayList<Event> eventArrayList = new ArrayList<>();
+    private EventAdapter eventAdapter;
+    private EventViewModel eventViewModel;
+
+    private String TAG = this.getClass().getCanonicalName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,26 +44,44 @@ public class NewsfeedActivity extends AppCompatActivity {
         binding = ActivityNewsfeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        Retrieve events
-
         onClickListener();
 
-        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), events);
-        this.binding.eventsList.setAdapter(eventAdapter);
+//        RecyclerView set up
+        this.eventArrayList = new ArrayList<>();
+        this.eventAdapter = new EventAdapter(this, this.eventArrayList, this::onEventItemClicked);
+
+        this.binding.eventsList.setLayoutManager(new LinearLayoutManager(this));
+        this.binding.eventsList.addItemDecoration(new DividerItemDecoration(this.getApplicationContext(), DividerItemDecoration.VERTICAL));
+        this.binding.eventsList.setAdapter(this.eventAdapter);
+
+        this.eventViewModel = EventViewModel.getInstance(this.getApplication());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("NewsfeedActivity","----------onResume");
+
+        this.eventViewModel.getEvents();
+        this.eventViewModel.allEvents.observe(this, new Observer<List<Event>>() {
+            @Override
+            public void onChanged(List<Event> events) {
+                if (events.isEmpty()){
+                    Log.e(TAG, "onChanged: No events");
+                }else{
+                    for(Event e : events){
+                        Log.e(TAG, "onChanged: e : " + e.toString() );
+                    }
+
+                    eventArrayList.clear();
+                    eventArrayList.addAll(events);
+                    eventAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     public void onClickListener() {
-        this.binding.eventsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(NewsfeedActivity.this, RegisterActivity.class);
-                Bundle args = new Bundle();
-                args.putSerializable("EVENT",(Serializable)events.get(i));
-                intent.putExtra("BUNDLE",args);
-                startActivity(intent);
-            }
-        });
-
         this.binding.history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,5 +97,14 @@ public class NewsfeedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onEventItemClicked(Event event) {
+        Intent intent = new Intent(NewsfeedActivity.this, RegisterActivity.class);
+        Bundle args = new Bundle();
+        args.putSerializable("EVENT",(Serializable)event);
+        intent.putExtra("BUNDLE",args);
+        startActivity(intent);
     }
 }

@@ -3,28 +3,23 @@ package com.example.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.OnRVClickListener;
-import com.example.R;
+import com.example.OnVolunteerClickListener;
 import com.example.adapters.HistoryAdapter;
 import com.example.databinding.ActivityHistoryBinding;
 import com.example.models.Volunteer;
 import com.example.viewmodels.VolunteerViewModel;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoryActivity extends AppCompatActivity implements OnRVClickListener {
+public class HistoryActivity extends AppCompatActivity implements OnVolunteerClickListener {
     ActivityHistoryBinding binding;
 
     private ArrayList<Volunteer> volunteerArrayList = new ArrayList<>();
@@ -41,7 +36,7 @@ public class HistoryActivity extends AppCompatActivity implements OnRVClickListe
 
 //        RecyclerView set up
         this.volunteerArrayList = new ArrayList<>();
-        this.historyAdapter = new HistoryAdapter(this, this.volunteerArrayList, this::onRVItemClicked);
+        this.historyAdapter = new HistoryAdapter(this, this.volunteerArrayList, this::onVolunteerItemClicked);
 
         this.binding.volunteeredList.setLayoutManager(new LinearLayoutManager(this));
         this.binding.volunteeredList.addItemDecoration(new DividerItemDecoration(this.getApplicationContext(), DividerItemDecoration.VERTICAL));
@@ -75,7 +70,7 @@ public class HistoryActivity extends AppCompatActivity implements OnRVClickListe
     }
 
     @Override
-    public void onRVItemClicked(Volunteer volunteer) {
+    public void onVolunteerItemClicked(Volunteer volunteer) {
         Log.d(TAG, "onRVItemClicked: Volunteer selected " + volunteer.toString());
         Intent intent = new Intent(HistoryActivity.this, HistoryDetailActivity.class);
         Bundle args = new Bundle();

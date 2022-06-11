@@ -25,13 +25,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date: "/>
+
         <TextView
             android:id="@+id/event_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/date"
-            android:textColor="@color/black"
-            android:text="xx/xx/xx"/>
+            android:text="xx/xx/xx"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/time"
