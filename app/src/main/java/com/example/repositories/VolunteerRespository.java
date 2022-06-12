@@ -40,7 +40,7 @@ public class VolunteerRespository {
         try {
             Map<String, Object> data = new HashMap<>();
             data.put(FIELD_EVENT, newVolunteer.getEvent());
-            data.put(FIELD_DONE, newVolunteer.getDone());
+            data.put(FIELD_DONE, newVolunteer.isDone());
             data.put(FIELD_LOCATION, newVolunteer.getLocation());
             data.put(FIELD_HOURS, newVolunteer.getHours());
             data.put(FIELD_DATE, newVolunteer.getDate());
@@ -97,7 +97,7 @@ public class VolunteerRespository {
     public void updateVolunteer(Volunteer v) {
         Map<String, Object> data = new HashMap<>();
         data.put(FIELD_EVENT, v.getEvent());
-        data.put(FIELD_DONE, v.getDone());
+        data.put(FIELD_DONE, v.isDone());
         data.put(FIELD_LOCATION, v.getLocation());
         data.put(FIELD_HOURS, v.getHours());
         data.put(FIELD_DATE, v.getDate());

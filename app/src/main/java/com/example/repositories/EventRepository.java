@@ -55,7 +55,6 @@ public class EventRepository {
 
                                 for(DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()){
                                     Event currentEvent = documentChange.getDocument().toObject(Event.class);
-                                    currentEvent.setId(documentChange.getDocument().getId());
                                     eventList.add(currentEvent);
                                     Log.e(TAG, "onSuccess: currentEvent " + currentEvent.toString() );
                                 }

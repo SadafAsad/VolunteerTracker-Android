@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Event implements Parcelable {
-    private String id;
     private String name;
     private String detail;
     private String organization;
@@ -26,7 +25,6 @@ public class Event implements Parcelable {
     }
 
     protected Event(Parcel in) {
-        id = in.readString();
         name = in.readString();
         detail = in.readString();
         organization = in.readString();
@@ -47,14 +45,6 @@ public class Event implements Parcelable {
             return new Event[size];
         }
     };
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -115,8 +105,7 @@ public class Event implements Parcelable {
     @Override
     public String toString() {
         return "Event{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", detail='" + detail + '\'' +
                 ", organization='" + organization + '\'' +
                 ", location='" + location + '\'' +
@@ -133,7 +122,6 @@ public class Event implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
         dest.writeString(name);
         dest.writeString(detail);
         dest.writeString(organization);
