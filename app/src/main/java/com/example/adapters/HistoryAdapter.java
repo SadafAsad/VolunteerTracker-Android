@@ -60,7 +60,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
                 binding.getRoot().setBackgroundColor(0xFF00FF00);
             }
             else {
-                binding.getRoot().setBackgroundColor(0xFF000000);
+                binding.getRoot().setBackgroundColor(0xFFFFFFFF);
             }
 
             binding.getRoot().setOnClickListener(new View.OnClickListener() {
