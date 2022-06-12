@@ -71,10 +71,6 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
                 if (events.isEmpty()){
                     Log.e(TAG, "onChanged: No events");
                 }else{
-//                    for(Event e : events){
-//                        Log.e(TAG, "onChanged: e : " + e.toString() );
-//                    }
-
                     eventArrayList.clear();
                     eventArrayList.addAll(events);
                     eventAdapter.notifyDataSetChanged();

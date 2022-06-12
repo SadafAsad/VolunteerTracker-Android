@@ -160,7 +160,7 @@ public class VolunteerRespository {
                     }
                 });
         } catch (Exception ex) {
-         Log.e(TAG, "isNurse: " + ex.getLocalizedMessage() );
+         Log.e(TAG, "getVolunteer: " + ex.getLocalizedMessage() );
         }
     }
 }
