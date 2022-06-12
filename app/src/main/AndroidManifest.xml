@@ -25,6 +25,12 @@
         <activity
             android:name=".views.RegisterActivity"
             android:exported="false" />
+        <activity
+            android:name=".views.NewsfeedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.HistoryActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

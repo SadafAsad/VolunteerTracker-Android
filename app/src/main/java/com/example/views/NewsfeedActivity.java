@@ -45,6 +45,9 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
         binding = ActivityNewsfeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        this.binding.history.setOnClickListener(this::onClick);
+        this.binding.record.setOnClickListener(this::onClick);
+
 //        RecyclerView set up
         this.eventArrayList = new ArrayList<>();
         this.eventAdapter = new EventAdapter(this, this.eventArrayList, this::onEventItemClicked);
@@ -68,9 +71,9 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
                 if (events.isEmpty()){
                     Log.e(TAG, "onChanged: No events");
                 }else{
-                    for(Event e : events){
-                        Log.e(TAG, "onChanged: e : " + e.toString() );
-                    }
+//                    for(Event e : events){
+//                        Log.e(TAG, "onChanged: e : " + e.toString() );
+//                    }
 
                     eventArrayList.clear();
                     eventArrayList.addAll(events);

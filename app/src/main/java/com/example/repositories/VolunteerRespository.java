@@ -45,7 +45,11 @@ public class VolunteerRespository {
             data.put(FIELD_HOURS, newVolunteer.getHours());
             data.put(FIELD_DATE, newVolunteer.getDate());
 
-            DB.collection(COLLECTION_USERS).document(loggedInUserEmail).collection(COLLECTION_VOLUNTEERS).add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            DB.collection(COLLECTION_USERS)
+                    .document(loggedInUserEmail)
+                    .collection(COLLECTION_VOLUNTEERS)
+                    .add(data)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
                     Log.e(TAG, "onSuccess: Document successfully created with ID " + documentReference.getId());

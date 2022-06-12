@@ -3,7 +3,9 @@ package com.example.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Event implements Parcelable {
+import java.io.Serializable;
+
+public class Event implements Parcelable, Serializable {
     private String name;
     private String detail;
     private String organization;

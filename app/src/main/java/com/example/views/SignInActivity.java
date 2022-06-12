@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.R;
 import com.example.databinding.ActivitySignInBinding;
+import com.example.repositories.VolunteerRespository;
+import com.example.viewmodels.VolunteerViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,6 +25,8 @@ public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
     private SharedPreferences prefs;
     private FirebaseAuth mAuth;
+    private VolunteerViewModel volunteerViewModel;
+    private VolunteerRespository volunteerRespository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,8 @@ public class SignInActivity extends AppCompatActivity {
         }
 
         this.mAuth = FirebaseAuth.getInstance();
+        this.volunteerViewModel = VolunteerViewModel.getInstance(this.getApplication());
+        this.volunteerRespository = this.volunteerViewModel.getVolunteerRepository();
     }
 
     public void onClick(View view) {
@@ -99,6 +105,7 @@ public class SignInActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     Log.e(TAG, "onComplete: Sign In Successful");
                     saveToPrefs(email, password);
+                    volunteerRespository.loggedInUserEmail = email;
                     goToMain();
                 }else{
                     Log.e(TAG, "onComplete: Sign In Failed" + task.getException().getLocalizedMessage() );
@@ -125,7 +132,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private void goToMain(){
         this.finishAffinity();
-        Intent historyIntent = new Intent(this, RegisterActivity.class);
+        Intent historyIntent = new Intent(this, NewsfeedActivity.class);
         startActivity(historyIntent);
     }
 }
