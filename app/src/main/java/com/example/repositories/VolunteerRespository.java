@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class VolunteerRespository {
     public String loggedInUserEmail = "";
     private final String TAG = this.getClass().getCanonicalName();
     public MutableLiveData<List<Volunteer>> allVolunteered = new MutableLiveData<>();
+    public MutableLiveData<List<Volunteer>> volunteer = new MutableLiveData<>();
 
     public VolunteerRespository() {
         DB = FirebaseFirestore.getInstance();
@@ -126,6 +128,39 @@ public class VolunteerRespository {
                     });
         }catch (Exception ex){
             Log.e(TAG, "updateVolunteer: " + ex.getLocalizedMessage() );
+        }
+    }
+
+    public void getVolunteer(String name) {
+        try{
+            DB.collection(COLLECTION_USERS)
+                .document(loggedInUserEmail)
+                .collection(COLLECTION_VOLUNTEERS)
+                .whereEqualTo(FIELD_EVENT, name)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<Volunteer> volunteerList = new ArrayList<>();
+                        volunteer.postValue(volunteerList);
+
+                        if (queryDocumentSnapshots.isEmpty()){
+                            Log.e(TAG, "onSuccess: No volunteer with this event name");
+                        }else{
+                            Log.e(TAG, "onSuccess: queryDocumentSnapshots" + queryDocumentSnapshots.getDocumentChanges() );
+
+                            for(DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()){
+                                Volunteer currentVolunteer = documentChange.getDocument().toObject(Volunteer.class);
+                                Log.e(TAG, "onSuccess: Found the volunteer " + currentVolunteer.toString() );
+                                volunteerList.add(currentVolunteer);
+                                break;
+                            }
+                        }
+                        volunteer.postValue(volunteerList);
+                    }
+                });
+        } catch (Exception ex) {
+         Log.e(TAG, "isNurse: " + ex.getLocalizedMessage() );
         }
     }
 }

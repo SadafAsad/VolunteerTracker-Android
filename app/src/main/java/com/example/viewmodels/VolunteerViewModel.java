@@ -15,6 +15,7 @@ public class VolunteerViewModel extends AndroidViewModel {
     private final VolunteerRespository repository = new VolunteerRespository();
     private static VolunteerViewModel instance;
     public MutableLiveData<List<Volunteer>> allVolunteered;
+    public MutableLiveData<List<Volunteer>> volunteer;
 
     public VolunteerViewModel(@NonNull Application application) {
         super(application);
@@ -41,4 +42,9 @@ public class VolunteerViewModel extends AndroidViewModel {
     }
 
     public void updateVolunteer(Volunteer v){ this.repository.updateVolunteer(v);}
+
+    public void getVolunteer(String name){
+        this.repository.getVolunteer(name);
+        this.volunteer = this.repository.volunteer;
+    }
 }

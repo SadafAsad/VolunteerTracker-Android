@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.example.R;
 import com.example.databinding.ActivityHistoryBinding;
@@ -16,6 +17,8 @@ import com.example.databinding.ActivityRegisterBinding;
 import com.example.models.Event;
 import com.example.models.Volunteer;
 import com.example.viewmodels.VolunteerViewModel;
+
+import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
     ActivityRegisterBinding binding;
@@ -51,9 +54,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         this.binding.eventDate.setText(event.getDate());
         this.binding.eventStart.setText(event.getStart_time());
         this.binding.eventFinish.setText(event.getFinish_time());
-//        Search in user.volunteered for the events
+//        Search in user.volunteer for the event
 //        if any event matches this one
 //        then the register button text should change to "Registered" and become disable
+        this.volunteerViewModel.getVolunteer(event.getName());
+        this.volunteerViewModel.volunteer.observe(this, new Observer<List<Volunteer>>() {
+            @Override
+            public void onChanged(List<Volunteer> volunteer) {
+                if (volunteer.isEmpty()){
+                    Log.e(TAG, "onChanged: No volunteer");
+                    registerBtn(false);
+                }else{
+                    registerBtn(true);
+                }
+            }
+        });
     }
 
     @Override
@@ -70,10 +85,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     this.volunteerViewModel.addVolunteer(this.v);
                     Toast toast = Toast.makeText(getApplicationContext(), "Successfully registered.", Toast.LENGTH_LONG);
                     toast.show();
-                    this.binding.register.setText("Registered");
-                    this.binding.register.setEnabled(false);
+                    registerBtn(true);
                 }
             }
+        }
+    }
+
+    public void registerBtn(boolean registered) {
+        if (registered) {
+            this.binding.register.setText("Registered");
+            this.binding.register.setEnabled(false);
+        }
+        else {
+            this.binding.register.setText("Register");
+            this.binding.register.setEnabled(true);
         }
     }
 }
