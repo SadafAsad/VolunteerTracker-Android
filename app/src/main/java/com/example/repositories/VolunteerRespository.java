@@ -96,6 +96,7 @@ public class VolunteerRespository {
                         }
                     });
         }catch (Exception ex){
+            Log.e(TAG, "getVolunteers: " + loggedInUserEmail);
             Log.e(TAG, "getVolunteers: " + ex.getLocalizedMessage() );
         }
     }

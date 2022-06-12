@@ -38,6 +38,6 @@ public class HistoryDetailActivity extends AppCompatActivity {
         this.binding.eventStart.setText("");
         this.binding.eventFinish.setText("");
         this.binding.userLocationHolder.setText(volunteered.getLocation());
-        this.binding.hours.setText(volunteered.getHours()+"");
+        this.binding.userHours.setText(volunteered.getHours()+"");
     }
 }

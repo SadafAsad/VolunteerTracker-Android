@@ -6,7 +6,9 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
-public class Volunteer implements Parcelable {
+import java.io.Serializable;
+
+public class Volunteer implements Parcelable, Serializable {
     private String id;
     private String event;
     private String location;
@@ -25,8 +27,8 @@ public class Volunteer implements Parcelable {
     }
 
     protected Volunteer(Parcel in) {
-        event = in.readString();
         id = in.readString();
+        event = in.readString();
         location = in.readString();
         hours = in.readDouble();
         date = in.readString();
