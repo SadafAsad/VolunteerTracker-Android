@@ -10,10 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.OnRecordClickListener;
-import com.example.OnVolunteerClickListener;
-import com.example.adapters.HistoryAdapter;
 import com.example.adapters.RecordAdapter;
-import com.example.databinding.ActivityHistoryBinding;
 import com.example.databinding.ActivityRecordBinding;
 import com.example.models.Volunteer;
 import com.example.viewmodels.VolunteerViewModel;
@@ -61,10 +58,6 @@ public class RecordActivity extends AppCompatActivity implements OnRecordClickLi
                 if (volunteers.isEmpty()){
                     Log.e(TAG, "onChanged: No volunteers");
                 }else{
-                    for(Volunteer v : volunteers){
-                        Log.e(TAG, "onChanged: v : " + v.toString() );
-                    }
-
                     volunteerArrayList.clear();
                     volunteerArrayList.addAll(volunteers);
                     recordAdapter.notifyDataSetChanged();
@@ -75,7 +68,7 @@ public class RecordActivity extends AppCompatActivity implements OnRecordClickLi
 
     @Override
     public void onRecordItemClicked(Volunteer volunteer) {
-        Log.d(TAG, "onRVItemClicked: Volunteer selected " + volunteer.toString());
+        Log.d(TAG, "onRecordItemClicked: event selected " + volunteer.toString());
         Intent intent = new Intent(RecordActivity.this, RecordUpdateActivity.class);
         Bundle args = new Bundle();
         args.putSerializable("VOLUNTEERED RECORD",(Serializable)volunteer);

@@ -2,18 +2,17 @@ package com.example.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.R;
-import com.example.databinding.ActivityHistoryBinding;
 import com.example.databinding.ActivityVolunteeredBinding;
 import com.example.models.Volunteer;
 
 public class HistoryDetailActivity extends AppCompatActivity {
     ActivityVolunteeredBinding binding;
 
+    private String TAG = this.getClass().getCanonicalName();
     Volunteer volunteered;
 
     protected void onCreate(Bundle savedInstanceState) {

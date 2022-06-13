@@ -57,10 +57,6 @@ public class HistoryActivity extends AppCompatActivity implements OnVolunteerCli
                 if (volunteers.isEmpty()){
                     Log.e(TAG, "onChanged: No volunteers");
                 }else{
-                    for(Volunteer v : volunteers){
-                        Log.e(TAG, "onChanged: v : " + v.toString() );
-                    }
-
                     volunteerArrayList.clear();
                     volunteerArrayList.addAll(volunteers);
                     historyAdapter.notifyDataSetChanged();
@@ -71,7 +67,7 @@ public class HistoryActivity extends AppCompatActivity implements OnVolunteerCli
 
     @Override
     public void onVolunteerItemClicked(Volunteer volunteer) {
-        Log.d(TAG, "onRVItemClicked: Volunteer selected " + volunteer.toString());
+        Log.d(TAG, "onVolunteerItemClicked: Volunteer selected " + volunteer.toString());
         Intent intent = new Intent(HistoryActivity.this, HistoryDetailActivity.class);
         Bundle args = new Bundle();
         args.putSerializable("VOLUNTEERED",(Serializable)volunteer);
