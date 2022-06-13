@@ -30,7 +30,6 @@ public class RecordUpdateActivity extends AppCompatActivity {
     private VolunteerViewModel volunteerViewModel;
     private final String TAG = this.getClass().getCanonicalName();
     String location = "";
-    String id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +52,6 @@ public class RecordUpdateActivity extends AppCompatActivity {
             double latitude = gpsTracker.getLatitude();
             double longitude = gpsTracker.getLongitude();
 
-            Log.e(TAG, "onCreate: Address: " + gpsTracker.getLocation().toString() + "\n" + latitude + " " + longitude );
-
             Geocoder geocoder = new Geocoder(RecordUpdateActivity.this, Locale.getDefault());
             try {
 
@@ -63,7 +60,7 @@ public class RecordUpdateActivity extends AppCompatActivity {
                 String  add = obj.getAddressLine(0);
                 location = obj.getLocality();
 
-                Log.e("Location", "Address "+ add + " \n" + location);
+                Log.e("Location", "Address " + location);
             }catch (Exception e) {
                 Log.e(TAG, "onCreate: Location exception" + e.getLocalizedMessage() );
             }
@@ -82,7 +79,7 @@ public class RecordUpdateActivity extends AppCompatActivity {
     }
 
     public void loadViews() {
-        this.id = volunteeredRecord.getId();
+
         this.binding.etEventName.setText(volunteeredRecord.getEvent());
         this.binding.etEventName.setEnabled(false);
         this.binding.etDate.setText(volunteeredRecord.getDate());

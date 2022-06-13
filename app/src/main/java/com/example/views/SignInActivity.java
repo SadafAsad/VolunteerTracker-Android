@@ -36,7 +36,23 @@ public class SignInActivity extends AppCompatActivity {
         this.binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
 
+        this.volunteerViewModel = VolunteerViewModel.getInstance(this.getApplication());
+        this.volunteerRespository = this.volunteerViewModel.getVolunteerRepository();
+
         prefs = getApplicationContext().getSharedPreferences(getPackageName(), MODE_PRIVATE);
+
+        if (prefs.contains("USER_EMAIL")) {
+
+            String user = this.prefs.getString("USER_EMAIL", "");
+            volunteerRespository.loggedInUserEmail = user;
+            Log.e(TAG, "onCreate: user: " + this.prefs.getString("USER_EMAIL", "") );
+            Toast.makeText(SignInActivity.this, "Already Logged In",
+                    Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(SignInActivity.this, NewsfeedActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        }
 
         if (prefs.contains("USER_EMAIL")){
             this.binding.etEmail.setText(this.prefs.getString("USER_EMAIL", ""));
@@ -49,8 +65,7 @@ public class SignInActivity extends AppCompatActivity {
         this.binding.btnSignIn.setOnClickListener(this::onClick);
         this.binding.btnSignUp.setOnClickListener(this::onClick);
         this.mAuth = FirebaseAuth.getInstance();
-        this.volunteerViewModel = VolunteerViewModel.getInstance(this.getApplication());
-        this.volunteerRespository = this.volunteerViewModel.getVolunteerRepository();
+
     }
 
     public void onClick(View view) {
