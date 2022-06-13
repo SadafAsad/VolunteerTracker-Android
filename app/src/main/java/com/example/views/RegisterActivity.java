@@ -119,6 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_logout:{
+                this.finishAffinity();
                 Intent mainIntent = new Intent(this, SignInActivity.class);
                 this.prefs.edit().clear().commit();
                 startActivity(mainIntent);

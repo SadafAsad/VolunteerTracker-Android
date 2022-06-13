@@ -57,6 +57,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_logout:{
+                this.finishAffinity();
                 Intent mainIntent = new Intent(this, SignInActivity.class);
                 this.prefs.edit().clear().commit();
                 startActivity(mainIntent);
