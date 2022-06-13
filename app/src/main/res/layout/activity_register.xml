@@ -3,14 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="50dp"
     tools:context=".views.RegisterActivity">
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="44dp"
+        android:text="Register Activity"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/event_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/label"
         android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:text="Name"/>
 
@@ -19,6 +34,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/event_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         android:text="Detail"/>
 
@@ -27,6 +46,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/event_detail"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Organization: "/>
     <TextView
         android:id="@+id/event_organization"
@@ -34,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/event_detail"
         android:layout_toRightOf="@id/organization"
+        android:layout_alignBaseline="@+id/organization"
         android:textColor="@color/black"
         android:text="organizatioin"/>
 
@@ -42,6 +64,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/organization"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Location: "/>
     <TextView
         android:id="@+id/event_location"
@@ -49,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/event_organization"
         android:layout_toRightOf="@id/location"
+        android:layout_alignBaseline="@+id/location"
         android:textColor="@color/black"
         android:text="location"/>
 
@@ -57,6 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/location"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Date: "/>
     <TextView
         android:id="@+id/event_date"
@@ -64,6 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/event_location"
         android:layout_toRightOf="@id/date"
+        android:layout_alignBaseline="@+id/date"
         android:textColor="@color/black"
         android:text="xx/xx/xx"/>
 
@@ -71,7 +99,10 @@
         android:id="@+id/time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/date">
+        android:layout_below="@id/date"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/start"
@@ -83,6 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/start"
+            android:layout_alignBaseline="@+id/start"
             android:textColor="@color/black"
             android:text="xx:xx"/>
 
@@ -97,6 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@+id/finish"
             android:textColor="@color/black"
             android:text="xx:xx"/>
 
@@ -109,6 +142,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/time"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:text="Register"/>
 
 </RelativeLayout>

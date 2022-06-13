@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="90dp"
     android:orientation="horizontal"
     android:padding="10dp"
     android:id="@+id/newsfeed_card">
@@ -14,11 +14,28 @@
         android:textColor="@color/black"
         android:text="Event's Name"/>
 
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_name"
+        android:layout_marginTop="10dp"
+        android:text="Location: "/>
+    <TextView
+        android:id="@+id/event_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_name"
+        android:layout_toRightOf="@id/location"
+        android:layout_alignBaseline="@+id/location"
+        android:textColor="@color/black"
+        android:text="Event's Location"/>
+
     <RelativeLayout
         android:id="@+id/date_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/event_name">
+        android:layout_below="@id/location">
 
         <TextView
             android:id="@+id/date"
@@ -31,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/date"
+            android:layout_alignBaseline="@+id/date"
             android:text="xx/xx/xx"
             android:textColor="@color/black"/>
 
@@ -45,24 +63,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@+id/time"
             android:textColor="@color/black"
             android:text="xx:xx"/>
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/date_time"
-        android:text="Location: "/>
-    <TextView
-        android:id="@+id/event_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/date_time"
-        android:layout_toRightOf="@id/location"
-        android:textColor="@color/black"
-        android:text="Event's Location"/>
 
 </RelativeLayout>
