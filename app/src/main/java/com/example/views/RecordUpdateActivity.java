@@ -52,8 +52,6 @@ public class RecordUpdateActivity extends AppCompatActivity {
             double latitude = gpsTracker.getLatitude();
             double longitude = gpsTracker.getLongitude();
 
-            Log.e(TAG, "onCreate: Address: " + gpsTracker.getLocation().toString() + "\n" + latitude + " " + longitude );
-
             Geocoder geocoder = new Geocoder(RecordUpdateActivity.this, Locale.getDefault());
             try {
 
@@ -62,7 +60,7 @@ public class RecordUpdateActivity extends AppCompatActivity {
                 String  add = obj.getAddressLine(0);
                 location = obj.getLocality();
 
-                Log.e("Location", "Address "+ add + " \n" + location);
+                Log.e("Location", "Address " + location);
             }catch (Exception e) {
                 Log.e(TAG, "onCreate: Location exception" + e.getLocalizedMessage() );
             }
