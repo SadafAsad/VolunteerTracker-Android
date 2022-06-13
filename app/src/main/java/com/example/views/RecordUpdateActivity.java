@@ -30,7 +30,6 @@ public class RecordUpdateActivity extends AppCompatActivity {
     private VolunteerViewModel volunteerViewModel;
     private final String TAG = this.getClass().getCanonicalName();
     String location = "";
-    String id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +81,7 @@ public class RecordUpdateActivity extends AppCompatActivity {
     }
 
     public void loadViews() {
-        this.id = volunteeredRecord.getId();
+
         this.binding.etEventName.setText(volunteeredRecord.getEvent());
         this.binding.etEventName.setEnabled(false);
         this.binding.etDate.setText(volunteeredRecord.getDate());
