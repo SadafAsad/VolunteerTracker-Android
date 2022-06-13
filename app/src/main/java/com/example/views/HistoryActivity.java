@@ -1,15 +1,20 @@
 package com.example.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.OnVolunteerClickListener;
+import com.example.R;
 import com.example.adapters.HistoryAdapter;
 import com.example.databinding.ActivityHistoryBinding;
 import com.example.models.Volunteer;
@@ -27,6 +32,7 @@ public class HistoryActivity extends AppCompatActivity implements OnVolunteerCli
     private VolunteerViewModel volunteerViewModel;
 
     private String TAG = this.getClass().getCanonicalName();
+    private SharedPreferences prefs;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +40,8 @@ public class HistoryActivity extends AppCompatActivity implements OnVolunteerCli
         binding = ActivityHistoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        prefs = getApplicationContext().getSharedPreferences(getPackageName(), MODE_PRIVATE);
+        
 //        RecyclerView set up
         this.volunteerArrayList = new ArrayList<>();
         this.historyAdapter = new HistoryAdapter(this, this.volunteerArrayList, this::onVolunteerItemClicked);
@@ -73,5 +81,24 @@ public class HistoryActivity extends AppCompatActivity implements OnVolunteerCli
         args.putSerializable("VOLUNTEERED",(Serializable)volunteer);
         intent.putExtra("BUNDLE",args);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_logout, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_logout:{
+                Intent mainIntent = new Intent(this, SignInActivity.class);
+                this.prefs.edit().clear().commit();
+                startActivity(mainIntent);
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

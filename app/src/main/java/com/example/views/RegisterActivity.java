@@ -1,13 +1,17 @@
 package com.example.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
@@ -27,12 +31,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Volunteer v;
 
     Event event;
+    private SharedPreferences prefs;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        prefs = getApplicationContext().getSharedPreferences(getPackageName(), MODE_PRIVATE);
 
         this.binding.register.setOnClickListener(this::onClick);
         this.v = new Volunteer();
@@ -100,5 +107,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             this.binding.register.setText("Register");
             this.binding.register.setEnabled(true);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_logout, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_logout:{
+                Intent mainIntent = new Intent(this, SignInActivity.class);
+                this.prefs.edit().clear().commit();
+                startActivity(mainIntent);
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

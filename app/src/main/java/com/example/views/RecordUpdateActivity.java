@@ -1,15 +1,19 @@
 package com.example.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,6 +34,7 @@ public class RecordUpdateActivity extends AppCompatActivity {
     private VolunteerViewModel volunteerViewModel;
     private final String TAG = this.getClass().getCanonicalName();
     String location = "";
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,8 @@ public class RecordUpdateActivity extends AppCompatActivity {
 
         this.binding = ActivityRecordUpdateBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
+
+        prefs = getApplicationContext().getSharedPreferences(getPackageName(), MODE_PRIVATE);
 
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
@@ -116,5 +123,24 @@ public class RecordUpdateActivity extends AppCompatActivity {
 
     private void updateDetails(Volunteer volunteer) {
         this.volunteerViewModel.updateVolunteer(volunteer);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_logout, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_logout:{
+                Intent mainIntent = new Intent(this, SignInActivity.class);
+                this.prefs.edit().clear().commit();
+                startActivity(mainIntent);
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

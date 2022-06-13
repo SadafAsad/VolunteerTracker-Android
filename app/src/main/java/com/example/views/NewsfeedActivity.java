@@ -1,6 +1,7 @@
 package com.example.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -40,6 +41,7 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
     private EventViewModel eventViewModel;
 
     private String TAG = this.getClass().getCanonicalName();
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
         binding = ActivityNewsfeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        prefs = getApplicationContext().getSharedPreferences(getPackageName(), MODE_PRIVATE);
+        
         this.binding.history.setOnClickListener(this::onClick);
         this.binding.record.setOnClickListener(this::onClick);
 
@@ -111,16 +115,19 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_logout, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.logout) {
-            this.finishAffinity();
-            Intent signIn = new Intent(this, SignInActivity.class);
-            startActivity(signIn);
+        switch (item.getItemId()){
+            case R.id.action_logout:{
+                Intent mainIntent = new Intent(this, SignInActivity.class);
+                this.prefs.edit().clear().commit();
+                startActivity(mainIntent);
+                break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
