@@ -1,4 +1,4 @@
-package com.example.views;
+package com.example.helper;
 
 import android.Manifest;
 import android.app.Activity;
@@ -18,7 +18,7 @@ import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
-class GpsTracker extends Service implements LocationListener {
+class GpsTrackerHelper extends Service implements LocationListener {
     private final Context mContext;
 
     // flag for GPS status
@@ -43,7 +43,7 @@ class GpsTracker extends Service implements LocationListener {
     // Declaring a Location Manager
     protected LocationManager locationManager;
 
-    public GpsTracker(Context context) {
+    public GpsTrackerHelper(Context context) {
         this.mContext = context;
         getLocation();
     }
@@ -126,7 +126,7 @@ class GpsTracker extends Service implements LocationListener {
 
     public void stopUsingGPS(){
         if(locationManager != null){
-            locationManager.removeUpdates(GpsTracker.this);
+            locationManager.removeUpdates(GpsTrackerHelper.this);
         }
     }
 
