@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.OnRecordClickListener;
 import com.example.OnVolunteerClickListener;
 import com.example.adapters.HistoryAdapter;
 import com.example.adapters.RecordAdapter;
@@ -21,7 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecordActivity extends AppCompatActivity implements OnVolunteerClickListener {
+public class RecordActivity extends AppCompatActivity implements OnRecordClickListener {
 
     ActivityRecordBinding binding;
 
@@ -39,7 +40,7 @@ public class RecordActivity extends AppCompatActivity implements OnVolunteerClic
 
 //        RecyclerView set up
         this.volunteerArrayList = new ArrayList<>();
-        this.recordAdapter = new RecordAdapter(this, this.volunteerArrayList, this::onVolunteerItemClicked);
+        this.recordAdapter = new RecordAdapter(this, this.volunteerArrayList, this::onRecordItemClicked);
 
         this.binding.volunteeredListRecord.setLayoutManager(new LinearLayoutManager(this));
         this.binding.volunteeredListRecord.addItemDecoration(new DividerItemDecoration(this.getApplicationContext(), DividerItemDecoration.VERTICAL));
@@ -73,7 +74,7 @@ public class RecordActivity extends AppCompatActivity implements OnVolunteerClic
     }
 
     @Override
-    public void onVolunteerItemClicked(Volunteer volunteer) {
+    public void onRecordItemClicked(Volunteer volunteer) {
         Log.d(TAG, "onRVItemClicked: Volunteer selected " + volunteer.toString());
         Intent intent = new Intent(RecordActivity.this, RecordUpdateActivity.class);
         Bundle args = new Bundle();
