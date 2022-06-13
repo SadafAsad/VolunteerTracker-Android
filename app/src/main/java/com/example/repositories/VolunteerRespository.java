@@ -188,7 +188,6 @@ public class VolunteerRespository {
                                     Volunteer currentVolunteer = documentChange.getDocument().toObject(Volunteer.class);
                                     Log.e(TAG, "onSuccess: Found the Record " + currentVolunteer.toString() );
                                     volunteerList.add(currentVolunteer);
-                                    break;
                                 }
                             }
                             volunteersRecord.postValue(volunteerList);
