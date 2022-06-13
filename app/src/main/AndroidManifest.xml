@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.G3_VolunteerTracker_AndroidVersion">
         <activity
+            android:name=".views.RecordUpdateActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.SignUpActivity"
             android:exported="false" />
         <activity
@@ -21,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".views.RegisterActivity"
             android:exported="false" />
@@ -33,6 +35,9 @@
             android:exported="false" />
         <activity
             android:name=".views.HistoryDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.RecordActivity"
             android:exported="false" />
     </application>
 

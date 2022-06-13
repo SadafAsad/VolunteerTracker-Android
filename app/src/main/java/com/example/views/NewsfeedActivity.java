@@ -97,8 +97,8 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
                     startActivity(intent);
                 }
                 case R.id.record:{
-//                    Intent intent = new Intent(NewsfeedActivity.this, RecordActivity.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(NewsfeedActivity.this, RecordActivity.class);
+                    startActivity(intent);
                 }
             }
         }
