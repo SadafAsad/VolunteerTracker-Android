@@ -181,6 +181,4 @@
         android:textColor="@color/black"
         android:text="x"/>
 
-<!--    Map view goes here -->
-
 </RelativeLayout>

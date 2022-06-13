@@ -94,9 +94,6 @@ public class RecordUpdateActivity extends AppCompatActivity {
         this.binding.etEventLocation.setText(location);
         this.binding.etEventLocation.setEnabled(false);
         this.binding.etEventHoursSpent.setText(volunteeredRecord.getHours() + "");
-//        if(volunteeredRecord.isDone()) {
-//            this.binding.rbAttended.setChecked(true);
-//        }
     }
 
     public void onClick(View view) {
@@ -110,9 +107,6 @@ public class RecordUpdateActivity extends AppCompatActivity {
                     this.volunteeredRecord.setHours(Double.valueOf(this.binding.etEventHoursSpent.getText().toString()));
                     this.volunteeredRecord.setLocation(this.binding.etEventLocation.getText().toString());
                     this.volunteeredRecord.setDone(true);
-//                    if(this.binding.rbAttended.isChecked()){
-//                        this.volunteeredRecord.setDone(true);
-//                    }
                     updateDetails(volunteeredRecord);
                     Toast.makeText(this, "Record updated successfully", Toast.LENGTH_SHORT).show();
                     break;

@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.OnVolunteerClickListener;
-import com.example.databinding.ActivityHistoryCardBinding;
 import com.example.databinding.ActivityRecordCardBinding;
 import com.example.models.Volunteer;
 

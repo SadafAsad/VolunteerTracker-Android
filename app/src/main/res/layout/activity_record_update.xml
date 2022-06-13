@@ -70,16 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEventLocation" />
 
-<!--    <RadioButton-->
-<!--        android:id="@+id/rbAttended"-->
-<!--        android:layout_width="179dp"-->
-<!--        android:layout_height="48dp"-->
-<!--        android:layout_marginTop="28dp"-->
-<!--        android:text="Attended"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/etEventHoursSpent" />-->
-
     <Button
         android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
