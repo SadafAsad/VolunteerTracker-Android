@@ -70,25 +70,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEventLocation" />
 
-    <RadioButton
-        android:id="@+id/rbAttended"
-        android:layout_width="179dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="28dp"
-        android:text="Attended"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEventHoursSpent" />
+<!--    <RadioButton-->
+<!--        android:id="@+id/rbAttended"-->
+<!--        android:layout_width="179dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:text="Attended"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/etEventHoursSpent" />-->
 
     <Button
         android:id="@+id/btnUpdate"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update"
+        android:text="Record"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbAttended"
+        app:layout_constraintTop_toBottomOf="@+id/etEventHoursSpent"
         app:layout_constraintVertical_bias="0.246" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
