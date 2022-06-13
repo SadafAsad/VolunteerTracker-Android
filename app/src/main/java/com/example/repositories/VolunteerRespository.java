@@ -186,6 +186,7 @@ public class VolunteerRespository {
 
                                 for(DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()){
                                     Volunteer currentVolunteer = documentChange.getDocument().toObject(Volunteer.class);
+                                    currentVolunteer.setId(documentChange.getDocument().getId());
                                     Log.e(TAG, "onSuccess: Found the Record " + currentVolunteer.toString() );
                                     volunteerList.add(currentVolunteer);
                                 }
