@@ -3,12 +3,15 @@ package com.example.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -104,5 +107,21 @@ public class NewsfeedActivity extends AppCompatActivity implements OnEventClickL
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.logout) {
+            this.finishAffinity();
+            Intent signIn = new Intent(this, SignInActivity.class);
+            startActivity(signIn);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

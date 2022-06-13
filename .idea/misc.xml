@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/drawable/menu_btn.xml" value="0.2703125" />
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_history.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_history_card.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_history_maps.xml" value="0.25416666666666665" />
@@ -16,6 +17,7 @@
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_sign_in.xml" value="0.23097826086956522" />
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_sign_up.xml" value="0.23097826086956522" />
         <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/layout/activity_volunteered.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/G3_VolunteerTracker_AndroidVersion/app/src/main/res/menu/menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
