@@ -7,16 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".views.RecordUpdateActivity">
 
-    <RadioButton
-        android:id="@+id/rbNotAttended"
-        android:layout_width="179dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Not Attended"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbAttended" />
-
     <TextView
         android:id="@+id/tvRecordTitle"
         android:layout_width="190dp"
@@ -94,13 +84,11 @@
         android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
         android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbNotAttended"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/rbAttended"
+        app:layout_constraintVertical_bias="0.246" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

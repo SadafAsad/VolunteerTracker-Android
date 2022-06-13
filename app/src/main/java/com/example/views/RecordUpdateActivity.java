@@ -48,8 +48,6 @@ public class RecordUpdateActivity extends AppCompatActivity {
         this.binding.etEventHoursSpent.setText(volunteeredRecord.getHours() + "");
         if(volunteeredRecord.isDone()) {
             this.binding.rbAttended.setChecked(true);
-        }else {
-            this.binding.rbNotAttended.setChecked(true);
         }
     }
 
@@ -69,8 +67,6 @@ public class RecordUpdateActivity extends AppCompatActivity {
                     this.volunteeredRecord.setLocation(this.binding.etEventLocation.getText().toString());
                     if(this.binding.rbAttended.isChecked()){
                         this.volunteeredRecord.setDone(true);
-                    }else if (this.binding.rbNotAttended.isChecked()) {
-                        this.volunteeredRecord.setDone(false);
                     }
                     updateDetails(volunteeredRecord);
                     break;

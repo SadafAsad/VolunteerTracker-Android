@@ -51,8 +51,8 @@ public class RecordActivity extends AppCompatActivity implements OnRecordClickLi
         super.onResume();
         Log.d("RecordActivity","----------onResume");
 
-        this.volunteerViewModel.getVolunteers();
-        this.volunteerViewModel.allVolunteered.observe(this, new Observer<List<Volunteer>>() {
+        this.volunteerViewModel.getVolunteersRecord();
+        this.volunteerViewModel.volunteersRecord.observe(this, new Observer<List<Volunteer>>() {
             @Override
             public void onChanged(List<Volunteer> volunteers) {
                 if (volunteers.isEmpty()){

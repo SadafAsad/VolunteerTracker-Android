@@ -33,6 +33,7 @@ public class VolunteerRespository {
     private final String TAG = this.getClass().getCanonicalName();
     public MutableLiveData<List<Volunteer>> allVolunteered = new MutableLiveData<>();
     public MutableLiveData<List<Volunteer>> volunteer = new MutableLiveData<>();
+    public MutableLiveData<List<Volunteer>> volunteersRecord = new MutableLiveData<>();
 
     public VolunteerRespository() {
         DB = FirebaseFirestore.getInstance();
@@ -162,6 +163,39 @@ public class VolunteerRespository {
                 });
         } catch (Exception ex) {
          Log.e(TAG, "getVolunteer: " + ex.getLocalizedMessage() );
+        }
+    }
+
+    public void getVolunteersRecord() {
+        try{
+            DB.collection(COLLECTION_USERS)
+                    .document(loggedInUserEmail)
+                    .collection(COLLECTION_VOLUNTEERS)
+                    .whereEqualTo(FIELD_DONE, false)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            List<Volunteer> volunteerList = new ArrayList<>();
+                            volunteersRecord.postValue(volunteerList);
+
+                            if (queryDocumentSnapshots.isEmpty()){
+                                Log.e(TAG, "onSuccess: No Records with not done status");
+                            }else{
+                                Log.e(TAG, "onSuccess: queryDocumentSnapshots" + queryDocumentSnapshots.getDocumentChanges() );
+
+                                for(DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()){
+                                    Volunteer currentVolunteer = documentChange.getDocument().toObject(Volunteer.class);
+                                    Log.e(TAG, "onSuccess: Found the Record " + currentVolunteer.toString() );
+                                    volunteerList.add(currentVolunteer);
+                                    break;
+                                }
+                            }
+                            volunteersRecord.postValue(volunteerList);
+                        }
+                    });
+        } catch (Exception ex) {
+            Log.e(TAG, "getVolunteersRecord: " + ex.getLocalizedMessage() );
         }
     }
 }

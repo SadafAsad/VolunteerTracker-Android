@@ -36,9 +36,6 @@ public class SignInActivity extends AppCompatActivity {
         this.binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
 
-        this.binding.btnSignIn.setOnClickListener(this::onClick);
-        this.binding.btnSignUp.setOnClickListener(this::onClick);
-
         prefs = getApplicationContext().getSharedPreferences(getPackageName(), MODE_PRIVATE);
 
         if (prefs.contains("USER_EMAIL")){
@@ -49,6 +46,8 @@ public class SignInActivity extends AppCompatActivity {
             this.binding.etPassword.setText(this.prefs.getString("USER_PASSWORD", ""));
         }
 
+        this.binding.btnSignIn.setOnClickListener(this::onClick);
+        this.binding.btnSignUp.setOnClickListener(this::onClick);
         this.mAuth = FirebaseAuth.getInstance();
         this.volunteerViewModel = VolunteerViewModel.getInstance(this.getApplication());
         this.volunteerRespository = this.volunteerViewModel.getVolunteerRepository();
