@@ -37,12 +37,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
 
     public void loadViews() {
         this.binding.eventName.setText(volunteered.getEvent());
-        this.binding.eventDetail.setText("");
-        this.binding.eventOrganization.setText("");
-        this.binding.eventLocation.setText("");
         this.binding.eventDate.setText(volunteered.getDate());
-        this.binding.eventStart.setText("");
-        this.binding.eventFinish.setText("");
         this.binding.userLocationHolder.setText(volunteered.getLocation());
         this.binding.userHours.setText(volunteered.getHours()+"");
     }

@@ -31,58 +31,10 @@
         android:text="Name"/>
 
     <TextView
-        android:id="@+id/event_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_name"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:text="Detail"/>
-
-    <TextView
-        android:id="@+id/organization"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_detail"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="Organization: "/>
-    <TextView
-        android:id="@+id/event_organization"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_detail"
-        android:layout_toRightOf="@id/organization"
-        android:layout_alignBaseline="@+id/organization"
-        android:textColor="@color/black"
-        android:text="organizatioin"/>
-
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/organization"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="Location: "/>
-    <TextView
-        android:id="@+id/event_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_organization"
-        android:layout_toRightOf="@id/location"
-        android:layout_alignBaseline="@+id/location"
-        android:textColor="@color/black"
-        android:text="location"/>
-
-    <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/location"
+        android:layout_below="@id/event_name"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
         android:text="Date: "/>
@@ -90,57 +42,17 @@
         android:id="@+id/event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/event_location"
+        android:layout_below="@id/event_name"
         android:layout_toRightOf="@id/date"
         android:layout_alignBaseline="@+id/date"
         android:textColor="@color/black"
         android:text="xx/xx/xx"/>
 
-    <RelativeLayout
-        android:id="@+id/time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/date"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:id="@+id/start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start: "/>
-        <TextView
-            android:id="@+id/event_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/start"
-            android:layout_alignBaseline="@+id/start"
-            android:textColor="@color/black"
-            android:text="xx:xx"/>
-
-        <TextView
-            android:id="@+id/finish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/event_finish"
-            android:text="Finish: "/>
-        <TextView
-            android:id="@+id/event_finish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignBaseline="@+id/finish"
-            android:textColor="@color/black"
-            android:text="xx:xx"/>
-
-    </RelativeLayout>
-
     <View
         android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/time"
+        android:layout_below="@id/event_date"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/darker_gray"/>
