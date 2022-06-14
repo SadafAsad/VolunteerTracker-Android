@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.R;
 import com.example.databinding.ActivityRecordUpdateBinding;
-import com.example.helper.GpsTracker;
+import com.example.helper.GpsTrackerHelper;
 import com.example.models.Volunteer;
 import com.example.viewmodels.VolunteerViewModel;
 
@@ -30,51 +30,23 @@ public class RecordUpdateActivity extends AppCompatActivity {
 
     ActivityRecordUpdateBinding binding;
 
-    private GpsTracker gpsTracker;
+    private GpsTrackerHelper gpsTracker;
     public Volunteer volunteeredRecord;
     private VolunteerViewModel volunteerViewModel;
     private final String TAG = this.getClass().getCanonicalName();
-    String location = "";
+    private String location = "";
     private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_record_update);
 
         this.binding = ActivityRecordUpdateBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
 
         prefs = getApplicationContext().getSharedPreferences(getPackageName(), MODE_PRIVATE);
 
-        try {
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
-                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-        gpsTracker = new GpsTracker(RecordUpdateActivity.this);
-        if(gpsTracker.canGetLocation()){
-            double latitude = gpsTracker.getLatitude();
-            double longitude = gpsTracker.getLongitude();
-
-            Geocoder geocoder = new Geocoder(RecordUpdateActivity.this, Locale.getDefault());
-            try {
-
-                List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                Address obj = addresses.get(0);
-                String  add = obj.getAddressLine(0);
-                location = obj.getLocality();
-
-                Log.e("Location", "Address " + location);
-            }catch (Exception e) {
-                Log.e(TAG, "onCreate: Location exception" + e.getLocalizedMessage() );
-            }
-        }else{
-            gpsTracker.showSettingsAlert();
-        }
+        this.getLocation();
 
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
@@ -113,6 +85,37 @@ public class RecordUpdateActivity extends AppCompatActivity {
                     break;
                 }
             }
+        }
+    }
+
+    private void getLocation() {
+        try {
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        gpsTracker = new GpsTrackerHelper(RecordUpdateActivity.this);
+        if(gpsTracker.canGetLocation()){
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+
+            Geocoder geocoder = new Geocoder(RecordUpdateActivity.this, Locale.getDefault());
+            try {
+
+                List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                Address obj = addresses.get(0);
+                String  add = obj.getAddressLine(0);
+                location = obj.getLocality();
+
+                Log.e("Location", "Address " + location);
+            }catch (Exception e) {
+                Log.e(TAG, "onCreate: Location exception" + e.getLocalizedMessage() );
+            }
+        }else{
+            gpsTracker.showSettingsAlert();
         }
     }
 

@@ -111,7 +111,7 @@ public class SignUpActivity extends AppCompatActivity {
                     newUser.setEmail(email);
                     newUser.setPassword(password);
                     userViewModel.addUser(newUser);
-                    goToMain();
+                    goToSignIn();
                     Toast.makeText(SignUpActivity.this, "Account created successfully", Toast.LENGTH_LONG).show();
 
                 }else{
@@ -128,8 +128,8 @@ public class SignUpActivity extends AppCompatActivity {
         prefs.edit().putString("USER_PASSWORD", password).apply();
     }
 
-    private void goToMain(){
-        Intent signInIntent = new Intent(this, SignInActivity.class);
+    private void goToSignIn(){
+        Intent signInIntent = new Intent(SignUpActivity.this, SignInActivity.class);
         startActivity(signInIntent);
     }
 }

@@ -32,10 +32,10 @@ public class UserRepository {
             data.put(FIELD_PASSWORD, newUser.getPassword());
             data.put(FIELD_NAME, newUser.getName());
 
-            DB.collection(COLLECTION_USERS).add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            DB.collection(COLLECTION_USERS).document(newUser.getEmail()).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Log.e(TAG, "onSuccess: Document created successfully with documentID: " +documentReference.getId() );
+                public void onSuccess(Void unused) {
+                    Log.e(TAG, "onSuccess: Document created successfully " );
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
